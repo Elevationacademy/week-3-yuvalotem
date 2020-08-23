@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Selouse</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+    <div id="search">
+        <input type="text" placeholder="Address" id="addr-input">
+        <input type="number" class="min price" placeholder="Min. Price" id="min-p-input">
+        <input type="number" class="max price" placeholder="Max Price" id="max-p-input">
+        <input type="number" class="min room" placeholder="Min. Rooms" id="min-r-input">
+        <input type="number" class="max room" placeholder="Max Rooms" id="max-r-input">
+
+        <div class="check-group">
+            <input class="form-radio" type="checkbox" name="immediate" id="immed-y">
+            <label for="immediate">Immediate</label>
+        </div>
+        <div class="check-group">
+            <input class="form-radio" type="checkbox" name="parking" id="park-y">
+            <label for="parking">Parking</label>
+        </div>
+
+        <button>Find Apartments</button>
+    </div>
+
+    <hr>
+
+    <div id="results"></div>
+
+    <script id="apartment-template" type="text/x-handlebars-template">
+        {{#each this}}
+        <div class="result">
+        <img src="{{img}}">
+        <span class="l-addr label">Address</span><P class="address"> {{address}}</P>
+        <span class="l-price label">Price</span><P class="price"> {{formatNumber price style=“currency” currency=“USD”}}</P>
+        <span class="l-rooms label">Rooms</span><P class="rooms"> {{rooms}}</P>
+        {{#if parking}}
+        <span class="l-park label"><i class="fas fa-parking"></i></span><p class="parking"> available</p>
+        {{/if}}
+        {{#if immediate}}
+       <p class="label">Name </p><span> {{contactDetails.name}}</span>
+        <p class="label"> Email </p><span> {{contactDetails.email}}</span>
+        {{/if}}
+        <br/>
+        <p class="label">Features </p>
+        {{#each features}}
+        <span>{{this}}</span>
+        {{/each}}
+        </div>
+        {{else}}
+        <div class="no-match">No matching results</div>
+        {{/each}}
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+    <script src="node_modules/handlebars-intl/dist/handlebars-intl-with-locales.js"></script>
+    <script src="apt-data.js"></script>
+    <script src="apt-filter.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
