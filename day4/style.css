@@ -1,0 +1,6 @@
+#nav-bar{
+    background-color: teal;
+    height: 100px;
+    width: 100vw;
+    position: sticky;
+}
